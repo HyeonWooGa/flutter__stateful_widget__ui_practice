@@ -12,13 +12,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int counter = 0;
+  List<int> numbers = [];
 
   void onClicked() {
     // if we don't have setState, It's not reflected on UI in real-time
     // also code in curly brackets is not nescessary, but it's standard
     setState(() {
-      counter++;
+      numbers.add(numbers.length);
     });
   }
 
@@ -35,10 +35,7 @@ class _MyAppState extends State<MyApp> {
                 'Click Count',
                 style: TextStyle(fontSize: 30),
               ),
-              Text(
-                '$counter',
-                style: const TextStyle(fontSize: 30),
-              ),
+              for (var el in numbers) Text('$el'),
               IconButton(
                 onPressed: onClicked,
                 icon: const Icon(
