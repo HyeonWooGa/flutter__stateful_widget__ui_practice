@@ -25,16 +25,20 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(
+            color: Colors.red,
+          ),
+        ),
+      ),
       home: Scaffold(
         backgroundColor: const Color(0xFFF4EDDB),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Click Count',
-                style: TextStyle(fontSize: 30),
-              ),
+              const _MyLargeTitle(),
               for (var el in numbers) Text('$el'),
               IconButton(
                 onPressed: onClicked,
@@ -46,6 +50,24 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _MyLargeTitle extends StatelessWidget {
+  const _MyLargeTitle();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'Click Count',
+      style: TextStyle(
+        fontSize: 30,
+        color: Theme.of(context)
+            .textTheme
+            .titleLarge!
+            .color, // titleLarge 는 항상 있다는 뜻 (!), titleLarge 는 있을 수도 없을 수도 있다는 뜻 (?)
       ),
     );
   }
