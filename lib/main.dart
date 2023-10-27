@@ -15,7 +15,11 @@ class _MyAppState extends State<MyApp> {
   int counter = 0;
 
   void onClicked() {
-    counter = counter + 1;
+    // if we don't have setState, It's not reflected on UI in real-time
+    // also code in curly brackets is not nescessary, but it's standard
+    setState(() {
+      counter++;
+    });
   }
 
   @override
