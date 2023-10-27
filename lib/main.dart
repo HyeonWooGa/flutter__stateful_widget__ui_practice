@@ -22,6 +22,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void onRefreshed() {
+    setState(() {
+      numbers.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,12 +46,24 @@ class _MyAppState extends State<MyApp> {
             children: [
               const _MyLargeTitle(),
               for (var el in numbers) Text('$el'),
-              IconButton(
-                onPressed: onClicked,
-                icon: const Icon(
-                  Icons.add_box_rounded,
-                ),
-                iconSize: 40,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: onClicked,
+                    icon: const Icon(
+                      Icons.add_box_rounded,
+                    ),
+                    iconSize: 40,
+                  ),
+                  IconButton(
+                    onPressed: onRefreshed,
+                    icon: const Icon(
+                      Icons.restore_from_trash_rounded,
+                    ),
+                    iconSize: 40,
+                  ),
+                ],
               ),
             ],
           ),
